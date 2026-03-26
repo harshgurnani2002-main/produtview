@@ -21,6 +21,9 @@ function App() {
             if (product.model_3d && !product.model_3d.startsWith('http')) {
               product.model_3d = `http://localhost:8000${product.model_3d}`;
             }
+            if (product.video_360 && !product.video_360.startsWith('http')) {
+              product.video_360 = `http://localhost:8000${product.video_360}`;
+            }
             if (product.images) {
                product.images = product.images.map(img => ({
                  ...img,

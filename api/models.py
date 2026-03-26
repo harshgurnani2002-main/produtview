@@ -4,6 +4,7 @@ class Product(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     model_3d = models.FileField(upload_to='models_3d/', blank=True, null=True)
+    video_360 = models.FileField(upload_to='videos_360/', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

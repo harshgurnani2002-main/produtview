@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 import ModelViewer from './ModelViewer';
 import Image360Viewer from './Image360Viewer';
+import Video360Viewer from './Video360Viewer';
 import ProductInfo from './ProductInfo';
 
 export default function ProductDetail({ product, onBack }) {
@@ -24,6 +25,8 @@ export default function ProductDetail({ product, onBack }) {
         <section className="w-full lg:w-3/5 h-[50dvh] min-h-[500px] lg:h-full lg:min-h-0 bg-slate-50 relative border-r border-slate-100 flex-shrink-0 lg:flex-shrink">
           {product.model_3d ? (
             <ModelViewer modelUrl={product.model_3d} />
+          ) : product.video_360 ? (
+            <Video360Viewer videoUrl={product.video_360} />
           ) : product.images && product.images.length > 0 ? (
             <Image360Viewer images={product.images} />
           ) : (

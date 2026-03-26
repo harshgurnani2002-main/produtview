@@ -13,7 +13,7 @@ class ProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ['id', 'name', 'description', 'model_3d', 'created_at', 'images']
+        fields = ['id', 'name', 'description', 'model_3d', 'video_360', 'created_at', 'images']
 
     def create(self, validated_data):
         # Access images from the request files
