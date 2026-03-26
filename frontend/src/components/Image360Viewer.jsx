@@ -28,18 +28,18 @@ export default function Image360Viewer({ images }) {
       // Add crossOrigin to avoid potential canvas taint issues if media is on different port/domain
       img.crossOrigin = "anonymous";
       img.src = imgData.image;
-      
+
       img.onload = () => {
         loadedFrames[index] = img;
         loadedCount++;
         setImagesLoaded(loadedCount);
-        
+
         if (loadedCount === sortedImages.length) {
           setFrames(loadedFrames);
           setLoading(false);
         }
       };
-      
+
       img.onerror = () => {
         console.error("Failed to load image:", imgData.image);
         loadedCount++;
@@ -66,7 +66,7 @@ export default function Image360Viewer({ images }) {
     const scale = Math.min(canvas.width / img.width, canvas.height / img.height);
     const x = (canvas.width / 2) - (img.width / 2) * scale;
     const y = (canvas.height / 2) - (img.height / 2) * scale;
-    
+
     ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
   }, [frames]);
 
@@ -104,7 +104,7 @@ export default function Image360Viewer({ images }) {
     if (Math.abs(delta) > 8) {
       const direction = delta > 0 ? -1 : 1; // Negative direction for dragging right to rotate left
       const nextFrame = (currentFrame + direction + frames.length) % frames.length;
-      
+
       setCurrentFrame(nextFrame);
       startX.current = currentX;
     }
@@ -149,7 +149,7 @@ export default function Image360Viewer({ images }) {
     return (
       <div className="w-full h-[500px] md:h-full relative bg-slate-50 flex flex-col items-center justify-center min-h-[500px]">
         <div className="w-48 h-1 bg-slate-200 rounded-full overflow-hidden mb-4">
-          <div 
+          <div
             className="h-full bg-black transition-all duration-300 ease-out"
             style={{ width: `${progress}%` }}
           />
@@ -185,7 +185,7 @@ export default function Image360Viewer({ images }) {
         onTouchEnd={handlePointerUp}
         onTouchCancel={handlePointerUp}
       />
-      
+
       {/* Interaction Hint */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-white/80 backdrop-blur px-4 py-2 rounded-full shadow-sm text-xs text-slate-500 font-medium pointer-events-none border border-slate-100 uppercase tracking-widest z-10 transition-opacity duration-500">
         Drag or Scroll to Rotate
